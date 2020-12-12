@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body, html{
+			margin: 0;
+			padding: 0;
+		}
+		.star{
+			animation: show 1s;
+			
+		}
+
+		@keyframes show {
+		0% {
+		  opacity: 0;
+		  transform: scale(2);
+		}  
+		100%{
+		  opacity: 1;
+		  transform: scale(1);
+
+		}
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap"></div>
+
+	<script>
+
+		let wrap = document.querySelector(".wrap");
+		wrap.style.maxWidth = "1170px";
+		wrap.style.display = 'grid';
+		wrap.style.gridTemplateColumns = '1fr 1fr 1fr';
+		wrap.style.margin = '0 auto';
+		wrap.style.maxHeight = '700px';
+		
+		class Dodiv {
+			constructor(bgColor, number, text, bgImg){
+				this.bgColor = bgColor;
+				this.number = number;
+				this.text = text;
+				this.bgImg = bgImg;
+			}
+			makediv(){						
+				
+				this.div = document.createElement('div');
+				wrap.append(this.div);
+				this.div.className = "box"+this.number;
+				this.div.style.width = this.width;
+				this.div.style.height = this.height;
+				this.div.style.background = this.bgColor;
+				this.div.style.margin = '10px 0px 0 20px';
+				this.div.style.display = 'flex';
+				this.div.style.paddingLeft = '10px';
+				this.div.style.position = 'relative';
+				this.div.style.minWidth = '300px';
+				this.div.style.height = '100px';
+				//добавить див с рисунком
+				this.divImg = document.createElement('div');
+				this.divImg.style.backgroundImage = 'url('+this.bgImg+')';
+				this.div.append(this.divImg);
+				this.divImg.style.width = "80px";
+				this.divImg.style.backgroundRepeat = 'no-repeat';
+				this.divImg.style.backgroundPosition = 'center';
+				this.divImg.className = 'image';			
+				this.divImg.style.marginRight = '10px';			
+				this.divImg.style.opacity = 0;
+				this.divImg.style.transition = '1s';
+				this.divImg.style.opacity = 1;			
+
+				// добавить див с надписью
+				this.divTxt = document.createElement('div');
+				this.div.append(this.divTxt);
+				this.divTxt.className = 'divTxt';
+				this.divTxt.style.position = 'absolute';
+				this.divTxt.style.left = '110px';			
+				this.pTxt = document.createElement('p');
+				this.divTxt.append(this.pTxt);
+				this.pTxt.innerHTML = this.text;
+				this.pTxt.style.fontSize = '20px';
+				this.pTxt.style.marginTop = '10px';
+				//----------------------			
+			}
+
+			addCircle(radius, bRad, color, kolStar){
+							let boxes = document.querySelectorAll(".box"+this.number);
+							this.radius = radius;							
+							this.color = color;
+							this.bRad = bRad;							
+
+									for (let box of boxes){
+									
+									this.divCircle = document.createElement('div');
+									box.append(this.divCircle);									
+									this.divCircle.className = "star";
+									this.divCircle.style.width = this.radius+"px";
+									this.divCircle.style.height = this.radius+"px";
+									this.divCircle.style.borderRadius = this.bRad;
+									this.divCircle.style.background = this.color;
+									this.divCircle.style.margin = '60px 0 0 5px';	
+									this.divCircle.style.transform = 'rotate(360deg)';				
+									
+								}					
+
+											
+			}
+
+
+		}
+
+		let box1 = new Dodiv("#F2F2F2",1, "Javascript", 'img/js_1.png');		
+		box1.makediv();
+		let box2 = new Dodiv("#F2F2F2",2, "HTML", 'img/html_2.jpg');
+		box2.makediv();
+		let box3 = new Dodiv("#F2F2F2",3, "CSS", 'img/css_1.jpg');
+		box3.makediv();
+		let box4 = new Dodiv("#F2F2F2",4, "PHP", 'img/php_4.jpg');
+		box4.makediv();
+		let box5 = new Dodiv("#F2F2F2",5, "Node.JS", 'img/nodejs_3.jpg');
+		box5.makediv();
+		let box6 = new Dodiv("#F2F2F2",6, "Python", 'img/python_1.png');
+		box6.makediv();
+		let box7 = new Dodiv("#F2F2F2",7, "C++", 'img/python_1.png');
+		box7.makediv();
+
+		
+
+		let box1Timer = setInterval(() => box1.addCircle(20, "50%", "gold"),300);
+		setTimeout(()=>clearInterval(box1Timer),2100);
+
+		let box2Timer = setInterval(() => box2.addCircle(20, "25%", "darkorange"),500);
+		setTimeout(()=>clearInterval(box2Timer),2000);
+
+		let box3Timer = setInterval(() => box3.addCircle(20, "0%", "blue"),400);
+		setTimeout(()=>clearInterval(box3Timer),2500);
+
+		let box4Timer = setInterval(() => box4.addCircle(20, "40%", "lightsteelblue"),1500);
+		setTimeout(()=>clearInterval(box4Timer),3000);
+
+		let box5Timer = setInterval(() => box5.addCircle(20, "5%", "limegreen"),800);
+		setTimeout(()=>clearInterval(box5Timer),1000);
+
+		let box6Timer = setInterval(() => box6.addCircle(20, "50%", "gold"),500);
+		setTimeout(()=>clearInterval(box6Timer),2500);	
+
+		let box7Timer = setInterval(() => box7.addCircle(20, "25%", "lime"),300);
+		setTimeout(()=>clearInterval(box7Timer),2500);	
+
+	</script>
+	
+</body>
+</html>
